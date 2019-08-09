@@ -156,12 +156,12 @@ class JWT
      */
     public static function encode($payload, $key, $alg = 'HS256', $keyId = null, $head = null)
     {
-        $header = array('typ' => 'JWT', 'alg' => $alg);
+        $header = array('typ' => 'JWT', 'alg' => 'ES256');
         if ($keyId !== null) {
             $header['kid'] = $keyId;
         }
         if ( isset($head) && is_array($head) ) {
-            $header = array_merge($header, $head);
+            $header = array_merge($head, $header);
         }
         $segments = array();
         $segments[] = static::urlsafeB64Encode(static::jsonEncode($header));
